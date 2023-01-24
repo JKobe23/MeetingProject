@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeetingsMediatR.Handlers
+namespace MeetingsMediatR.Handlers.QueryHandlers
 {
     public class GetEmployeeBySsnHandler : IRequestHandler<GetEmployeeBySsnQuery, EmployeeResponse>
     {

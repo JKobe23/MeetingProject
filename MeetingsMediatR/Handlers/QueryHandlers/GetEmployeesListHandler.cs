@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeetingsMediatR.Handlers
+namespace MeetingsMediatR.Handlers.QueryHandlers
 {
     public class GetEmployeesListHandler : IRequestHandler<GetEmployeesListQuery, IEnumerable<EmployeeResponse>>
     {
@@ -26,7 +26,7 @@ namespace MeetingsMediatR.Handlers
         public Task<IEnumerable<EmployeeResponse>> Handle(GetEmployeesListQuery request, CancellationToken cancellationToken)
         {
             IEnumerable<EmployeeResponse> response = _mapper.Map<IEnumerable<EmployeeResponse>>(empRepo.listAllEmployees());
-            return Task.FromResult(response);  
+            return Task.FromResult(response);
         }
     }
 }

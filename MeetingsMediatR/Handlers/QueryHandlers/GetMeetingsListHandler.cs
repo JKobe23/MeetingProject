@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeetingsMediatR.Handlers
+namespace MeetingsMediatR.Handlers.QueryHandlers
 {
     public class GetMeetingsListHandler : IRequestHandler<GetMeetingsListQuery, IEnumerable<MeetingResponse>>
     {
