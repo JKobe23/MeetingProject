@@ -49,12 +49,12 @@ namespace MeetingsAPI.Controllers
 
         // POST api/<PositionController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] string title, int level)
+        public async Task<IActionResult> Post([FromBody] CreatePositionCommand command)
         {
             IActionResult result;
             try
             {
-                Position position = await _mediator.Send(new CreatePositionCommand(title, level));
+                Position position = await _mediator.Send(command);
                 result = Created("Positions", position.ID);
             } catch(Exception ex)
             {
@@ -78,10 +78,15 @@ namespace MeetingsAPI.Controllers
             {
                 PositionResponse response = await _mediator.Send(new DeletePositionCommand(id));
                 result = NoContent();
+                if (response == null)
+                {
+                    result = NotFound();
+                }
             } catch(Exception ex)
             {
                 result = NotFound(ex.Message);
             }
+            
             return result;
         }
     }

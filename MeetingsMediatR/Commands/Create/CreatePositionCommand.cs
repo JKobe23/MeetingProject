@@ -8,5 +8,9 @@ using System.Threading.Tasks;
 
 namespace MeetingsMediatR.Commands.Create
 {
-    public record CreatePositionCommand(string title, int level) : IRequest<Position>;    
+    public class CreatePositionCommand : IRequest<Position>
+    {
+        public string title { get; set; }
+        public int level { get; set; }
+    }
 }

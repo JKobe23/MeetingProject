@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace MeetingsMediatR.Commands.Create
 {
-    public record CreateEntityCommand(string name, string location) : IRequest<Entity>;
+    public class CreateEntityCommand : IRequest<Entity>
+    {
+        public string name { get; set; }
+        public string location { get; set; }
+    }
     
 }

@@ -36,8 +36,15 @@ namespace MeetingInfrastructure
 
         public T Remove(T entity)
         {
-            Context.Set<T>().Remove(entity);
-            Context.SaveChanges();
+            try
+            {
+                Context.Set<T>().Remove(entity);
+                Context.SaveChanges();
+
+            } catch(Exception ex)
+            {
+                return null;
+            }
             return entity;
         }
     }
