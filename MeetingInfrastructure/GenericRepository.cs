@@ -17,10 +17,11 @@ namespace MeetingInfrastructure
         {
             Context = context;
         }
-        public void Add(T entity)
+        public T Add(T entity)
         {
             Context.Set<T>().Add(entity);
             Context.SaveChanges();
+            return entity;
             
         }
         public IEnumerable<T> GetAll()
@@ -33,11 +34,11 @@ namespace MeetingInfrastructure
             return Context.Set<T>().Find(id);
         }
 
-        public void Remove(T entity)
+        public T Remove(T entity)
         {
             Context.Set<T>().Remove(entity);
             Context.SaveChanges();
-            
+            return entity;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using MeetingCore;
 using MeetingInfrastructure;
+using MeetingsMediatR.Commands.Create;
 using MeetingsMediatR.Queries;
 using MeetingsMediatR.Response_Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -46,8 +48,19 @@ namespace MeetingsAPI.Controllers
 
         // POST api/<EntityController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] string name, string location)
         {
+            IActionResult result;
+            try
+            {
+                Entity entity = await _mediator.Send(new CreateEntityCommand(name, location));
+                result = Created("Positions", entity.ID);
+            }
+            catch (Exception ex)
+            {
+                result = Conflict(ex.Message);
+            }
+            return result;
         }
 
         // PUT api/<EntityController>/5

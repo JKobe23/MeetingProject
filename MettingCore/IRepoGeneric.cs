@@ -11,7 +11,7 @@ namespace MeetingCore
     {
         T GetById(int id);
         IEnumerable<T> GetAll();
-        void Add(T entity);
-        void Remove(T entity);
+        T Add(T entity);
+        T Remove(T entity);
     }
 }

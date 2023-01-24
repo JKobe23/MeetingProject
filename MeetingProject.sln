@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingCore", "MettingCore\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingInfrastructure", "MeetingInfrastructure\MeetingInfrastructure.csproj", "{80B68927-F92A-4D16-8CDF-17E01D9688EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingConsole", "MeetingConsole\MeetingConsole.csproj", "{D3131638-A39E-488E-9AFC-CEEE0FCF2866}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingsMediatR", "MeetingsMediatR\MeetingsMediatR.csproj", "{36B701AC-A59B-4080-859D-81A66A48A081}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingsAPI", "MeetingsAPI\MeetingsAPI.csproj", "{F4D36DC7-F91C-4408-A30C-2BE238D22C8E}"
@@ -27,10 +25,6 @@ Global
 		{80B68927-F92A-4D16-8CDF-17E01D9688EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80B68927-F92A-4D16-8CDF-17E01D9688EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80B68927-F92A-4D16-8CDF-17E01D9688EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3131638-A39E-488E-9AFC-CEEE0FCF2866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3131638-A39E-488E-9AFC-CEEE0FCF2866}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3131638-A39E-488E-9AFC-CEEE0FCF2866}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3131638-A39E-488E-9AFC-CEEE0FCF2866}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36B701AC-A59B-4080-859D-81A66A48A081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36B701AC-A59B-4080-859D-81A66A48A081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36B701AC-A59B-4080-859D-81A66A48A081}.Release|Any CPU.ActiveCfg = Release|Any CPU
