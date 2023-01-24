@@ -23,7 +23,15 @@ namespace MeetingsAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<EmployeeResponse>> Get()
         {
-            return await _mediator.Send(new GetEmployeesListQuery());
+            IEnumerable<EmployeeResponse> employees = new List<EmployeeResponse>();  
+            try {
+                employees = await _mediator.Send(new GetEmployeesListQuery());
+
+            } catch (Exception ex)
+            {
+                employees = Enumerable.Empty<EmployeeResponse>(); 
+            }
+            return employees;
         }
 
         // GET api/<EmployeeController>/5

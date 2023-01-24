@@ -21,7 +21,16 @@ namespace MeetingsAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<MeetingResponse>> Get()
         {
-            return await _mediator.Send(new GetMeetingsListQuery());
+            IEnumerable<MeetingResponse> meetings = new List<MeetingResponse>();
+            try
+            {
+                meetings = await _mediator.Send(new GetMeetingsListQuery());
+            }
+            catch (Exception ex)
+            {
+                meetings = Enumerable.Empty<MeetingResponse>();
+            }
+            return meetings;
         }
 
         // GET api/<MeetingController>/5
