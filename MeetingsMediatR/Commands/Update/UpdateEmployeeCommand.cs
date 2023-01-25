@@ -1,20 +1,19 @@
-﻿using MeetingCore;
+﻿using MediatR;
+using MeetingsMediatR.Response_Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeetingsMediatR.Response_Entities
+namespace MeetingsMediatR.Commands.Update
 {
-    public class EmployeeResponse
+    public class UpdateEmployeeCommand : IRequest<EmployeeResponse>
     {
         public int ID { get; set; }
-        public string SSN { get; set; }
         public string Name { get; set; }
         public int PositionID { get; set; }
-        public EntityResponse Entity { get; set; }
         public int EntityID { get; set; }
-        public PositionResponse Position { get; set; }
+        
     }
 }

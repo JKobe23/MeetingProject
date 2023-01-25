@@ -1,4 +1,7 @@
 ﻿using MediatR;
+using MeetingsMediatR.Commands.Create;
+using MeetingsMediatR.Commands.Delete;
+using MeetingsMediatR.Commands.Update;
 using MeetingsMediatR.Queries;
 using MeetingsMediatR.Response_Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -54,20 +57,75 @@ namespace MeetingsAPI.Controllers
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CreateEmployeeCommand command)
         {
+            IActionResult result;
+            try
+            {
+                EmployeeResponse employee = await _mediator.Send(command);
+                
+                if(employee == null)
+                {
+                    result = BadRequest();
+                }
+                else
+                {
+                    result = Created("Positions", employee.ID);
+                }
+            }
+            catch (Exception ex)
+            {
+                result = BadRequest(ex.Message);
+            }
+            return result;
         }
 
         // PUT api/<EmployeeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateEmployeeCommand command)
         {
+            IActionResult result;
+            try
+            {
+                EmployeeResponse employee = await _mediator.Send(command);
+                if (employee == null)
+                {
+                    result = NotFound();
+                }
+                else
+                {
+                    result = Ok(employee);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = new JsonResult(ex.Message);
+            }
+
+            return result;
         }
 
         // DELETE api/<EmployeeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{ssn}")]
+        public async Task<IActionResult> Delete(string ssn)
         {
+            IActionResult result;
+            try
+            {
+                EmployeeResponse response = await _mediator.Send(new DeleteEmployeeCommand(ssn));
+                result = NoContent();
+                if (response == null)
+                {
+                    result = NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                result = NotFound(ex.Message);
+            }
+
+            return result;
         }
     }
 }

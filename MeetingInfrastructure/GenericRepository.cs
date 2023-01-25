@@ -19,6 +19,10 @@ namespace MeetingInfrastructure
         }
         public T Add(T entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             Context.Set<T>().Add(entity);
             Context.SaveChanges();
             return entity;
