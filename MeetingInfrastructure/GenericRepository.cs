@@ -34,6 +34,20 @@ namespace MeetingInfrastructure
             return Context.Set<T>().Find(id);
         }
 
+        public T Update(T entity)
+        {
+            try
+            {
+                Context.Set<T>().Update(entity);
+                Context.SaveChanges();
+                
+            } catch (Exception ex)
+            {
+                return null;
+            }
+            return entity;
+        }
+
         public T Remove(T entity)
         {
             try

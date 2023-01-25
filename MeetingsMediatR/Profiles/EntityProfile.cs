@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MeetingCore;
+using MeetingsMediatR.Commands.Create;
+using MeetingsMediatR.Commands.Update;
 using MeetingsMediatR.Response_Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,8 @@ namespace MeetingsMediatR.Profiles
         public EntityProfile()
         {
             CreateMap<Entity, EntityResponse>().ReverseMap().ForMember(x => x.Employees, y => y.Ignore());
+            CreateMap<Entity, CreateEntityCommand>().ReverseMap().ForMember(x => x.Employees, y => y.Ignore());
+            CreateMap<Entity, UpdateEntityCommand>().ReverseMap().ForMember(x => x.Employees, y => y.Ignore());
         }
     }
 }

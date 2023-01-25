@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MeetingsMediatR.Handlers.CommandHandlers
 {
-    public class CreatePositionHandler : IRequestHandler<CreatePositionCommand, Position>
+    public class CreatePositionHandler : IRequestHandler<CreatePositionCommand, PositionResponse>
     {
         private readonly IRepoPosition posRepo;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace MeetingsMediatR.Handlers.CommandHandlers
             posRepo = PosRepo;
             _mapper = mapper;
         }
-        public Task<Position> Handle(CreatePositionCommand request, CancellationToken cancellationToken)
+        public Task<PositionResponse> Handle(CreatePositionCommand request, CancellationToken cancellationToken)
         {
             PositionResponse response = new PositionResponse
             {
@@ -31,7 +31,8 @@ namespace MeetingsMediatR.Handlers.CommandHandlers
 
             Position position = _mapper.Map<Position>(response);
             posRepo.Add(position);
-            return Task.FromResult(position);
+            response = _mapper.Map<PositionResponse>(position);
+            return Task.FromResult(response);
         }
     }
 }

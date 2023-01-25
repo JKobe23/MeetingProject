@@ -34,7 +34,7 @@ namespace MeetingInfrastructure.Migrations
 
                     b.HasIndex("MeetingsId");
 
-                    b.ToTable("EmployeeMeeting");
+                    b.ToTable("EmployeeMeeting", (string)null);
                 });
 
             modelBuilder.Entity("MeetingCore.Employee", b =>
@@ -65,7 +65,7 @@ namespace MeetingInfrastructure.Migrations
 
                     b.HasIndex("PositionID");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("MeetingCore.Entity", b =>
@@ -86,7 +86,7 @@ namespace MeetingInfrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Entities");
+                    b.ToTable("Entities", (string)null);
                 });
 
             modelBuilder.Entity("MeetingCore.Meeting", b =>
@@ -118,7 +118,7 @@ namespace MeetingInfrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Meetings");
+                    b.ToTable("Meetings", (string)null);
                 });
 
             modelBuilder.Entity("MeetingCore.Position", b =>
@@ -138,7 +138,7 @@ namespace MeetingInfrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Positions");
+                    b.ToTable("Positions", (string)null);
                 });
 
             modelBuilder.Entity("MeetingCore.Subject", b =>
@@ -167,7 +167,7 @@ namespace MeetingInfrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Subjects");
+                    b.ToTable("Subjects", (string)null);
                 });
 
             modelBuilder.Entity("MeetingSubject", b =>
@@ -182,7 +182,7 @@ namespace MeetingInfrastructure.Migrations
 
                     b.HasIndex("SubjectsID");
 
-                    b.ToTable("MeetingSubject");
+                    b.ToTable("MeetingSubject", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeMeeting", b =>

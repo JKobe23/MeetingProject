@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MeetingsMediatR.Handlers.CommandHandlers
 {
-    public class CreateEntityHandler : IRequestHandler<CreateEntityCommand, Entity>
+    public class CreateEntityHandler : IRequestHandler<CreateEntityCommand, EntityResponse>
     {
         private readonly IRepoEntity entRepo;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace MeetingsMediatR.Handlers.CommandHandlers
             entRepo = EntRepo;
             _mapper = mapper;
         }
-        public Task<Entity> Handle(CreateEntityCommand request, CancellationToken cancellationToken)
+        public Task<EntityResponse> Handle(CreateEntityCommand request, CancellationToken cancellationToken)
         {
             EntityResponse response = new EntityResponse
             {
@@ -31,7 +31,8 @@ namespace MeetingsMediatR.Handlers.CommandHandlers
            
             Entity entity = _mapper.Map<Entity>(response);
             entRepo.Add(entity);
-            return Task.FromResult(entity);
+            response = _mapper.Map<EntityResponse>(entity);
+            return Task.FromResult(response);
         }
     }
 }

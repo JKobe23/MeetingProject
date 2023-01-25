@@ -3,9 +3,11 @@ using MeetingCore;
 using MeetingInfrastructure;
 using MeetingsMediatR.Commands.Create;
 using MeetingsMediatR.Commands.Delete;
+using MeetingsMediatR.Commands.Update;
 using MeetingsMediatR.Queries;
 using MeetingsMediatR.Response_Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -54,7 +56,7 @@ namespace MeetingsAPI.Controllers
             IActionResult result;
             try
             {
-                Entity entity = await _mediator.Send(command);
+                EntityResponse entity = await _mediator.Send(command);
                 result = Created("Positions", entity.ID);
             }
             catch (Exception ex)
@@ -65,9 +67,29 @@ namespace MeetingsAPI.Controllers
         }
 
         // PUT api/<EntityController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateEntityCommand command)
         {
+            IActionResult result;
+            try
+            {
+                EntityResponse entity = await _mediator.Send(command);
+                if (entity ==null)
+                {
+                    result= NotFound();
+                }
+                else
+                {
+                    result = Ok(entity);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = new JsonResult(ex.Message);
+            }
+
+            return result;
         }
 
         // DELETE api/<EntityController>/5
@@ -79,7 +101,7 @@ namespace MeetingsAPI.Controllers
             {
                 EntityResponse response = await _mediator.Send(new DeleteEntityCommand(id));
                 result = NoContent();
-                if(response == null)
+                if (response == null)
                 {
                     result = NotFound();
                 }

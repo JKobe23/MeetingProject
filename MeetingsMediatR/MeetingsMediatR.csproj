@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Update\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MeetingInfrastructure\MeetingInfrastructure.csproj" />
     <ProjectReference Include="..\MettingCore\MeetingCore.csproj" />
   </ItemGroup>

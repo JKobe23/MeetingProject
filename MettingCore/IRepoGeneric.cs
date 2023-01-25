@@ -12,6 +12,7 @@ namespace MeetingCore
         T GetById(int id);
         IEnumerable<T> GetAll();
         T Add(T entity);
+        T Update(T entity);
         T Remove(T entity);
     }
 }

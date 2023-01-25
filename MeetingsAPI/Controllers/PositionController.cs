@@ -2,6 +2,7 @@
 using MeetingCore;
 using MeetingsMediatR.Commands.Create;
 using MeetingsMediatR.Commands.Delete;
+using MeetingsMediatR.Commands.Update;
 using MeetingsMediatR.Queries;
 using MeetingsMediatR.Response_Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -54,7 +55,7 @@ namespace MeetingsAPI.Controllers
             IActionResult result;
             try
             {
-                Position position = await _mediator.Send(command);
+                PositionResponse position = await _mediator.Send(command);
                 result = Created("Positions", position.ID);
             } catch(Exception ex)
             {
@@ -64,9 +65,29 @@ namespace MeetingsAPI.Controllers
         }
 
         // PUT api/<PositionController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdatePositionCommand command)
         {
+            IActionResult result;
+            try
+            {
+                PositionResponse position = await _mediator.Send(command);
+                if (position == null)
+                {
+                    result = NotFound();
+                }
+                else
+                {
+                    result = Ok(position);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = new JsonResult(ex.Message);
+            }
+
+            return result;
         }
 
         // DELETE api/<PositionController>/5
