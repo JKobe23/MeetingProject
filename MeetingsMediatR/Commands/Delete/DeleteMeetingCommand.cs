@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace MeetingsMediatR.Commands.Delete
 {
-    public record DeleteMeetingCommand : IRequest<MeetingResponse>;
+    public record DeleteMeetingCommand(string refnum) : IRequest<MeetingResponse>;
 }

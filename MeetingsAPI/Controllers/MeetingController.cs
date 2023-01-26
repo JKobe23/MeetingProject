@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using MeetingsMediatR.Commands.Create;
+using MeetingsMediatR.Commands.Delete;
 using MeetingsMediatR.Queries;
 using MeetingsMediatR.Response_Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.Intrinsics.X86;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -84,9 +86,25 @@ namespace MeetingsAPI.Controllers
         }
 
         // DELETE api/<MeetingController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{refnum}")]
+        public async Task<IActionResult> Delete(string refnum)
         {
+            IActionResult result;
+            try
+            {
+                MeetingResponse response = await _mediator.Send(new DeleteMeetingCommand(refnum));
+                result = NoContent();
+                if (response == null)
+                {
+                    result = NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                result = NotFound(ex.Message);
+            }
+
+            return result;
         }
     }
 }

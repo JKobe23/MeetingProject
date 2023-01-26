@@ -23,7 +23,10 @@ namespace MeetingsMediatR.Handlers.CommandHandlers
         }
         public Task<MeetingResponse> Handle(DeleteMeetingCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Meeting meeting = meetRepo.Remove(meetRepo.getByRefNumber(request.refnum));
+            MeetingResponse response = _mapper.Map<MeetingResponse>(meeting);
+            return Task.FromResult(response);
+
         }
     }
 }
