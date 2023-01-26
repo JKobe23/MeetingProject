@@ -32,14 +32,7 @@ namespace MeetingsMediatR.Handlers.CommandHandlers
             {
                 try
                 {
-                    Meeting meeting = new Meeting
-                    {
-                        RefNumber = request.RefNumber ,
-                        Name = request.Name,
-                        Date= request.Date,
-                        Location= request.Location,
-                        Notes = request.Notes
-                    };
+                    Meeting meeting = _mapper.Map<Meeting>(request);
 
                     meeting.Employees = meetRepo.retreiveEmployees(request.EmployeeIDs);
                     meeting.Subjects = meetRepo.retreiveSubjects(request.SubjectIDs);
