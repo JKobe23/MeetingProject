@@ -57,7 +57,7 @@ namespace MeetingsAPI.Controllers
             try
             {
                 EntityResponse entity = await _mediator.Send(command);
-                result = Created("Positions", entity.ID);
+                result = Created("Entities", entity.ID);
             }
             catch (Exception ex)
             {

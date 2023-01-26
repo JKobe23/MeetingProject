@@ -18,6 +18,8 @@ namespace MeetingCore
         [ForeignKey("Entity")]
         public int EntityID { get; set; }
         public Position Position { get; set; }
-        public IEnumerable<Meeting> Meetings { get; set; }
+
+
+        public List<Meeting> Meetings { get; set; }
     }
 }

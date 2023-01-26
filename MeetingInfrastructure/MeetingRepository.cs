@@ -14,14 +14,11 @@ namespace MeetingInfrastructure
         public MeetingRepository(MeetingsContext context) : base(context)
         {
         }
-        
+
         public Meeting getByRefNumber(string refId)
         {
-            Meeting meeting = Context.Meetings
-                              .Include(m => m.Employees)
-                              .Include(m => m.Subjects)
-                              .FirstOrDefault(m => m.RefNumber.ToLower() == refId.ToLower());
-            
+            Meeting meeting = Context.Meetings.FirstOrDefault(m => m.RefNumber.ToLower() == refId.ToLower());
+
             return meeting;
         }
         public string listDetails(string refId)
@@ -38,22 +35,22 @@ namespace MeetingInfrastructure
 
             int employeesCount = meeting.Employees.Count();
             int subjectsCount = meeting.Subjects.Count();
-                                
+
             StringBuilder builder = new StringBuilder();
             builder.Append($"Meeting title: {meeting.Name} \n");
-            builder.Append($"Reference number: {meeting.RefNumber} \n");   
+            builder.Append($"Reference number: {meeting.RefNumber} \n");
             builder.Append($"Date and location: {meeting.Location} on {meeting.Date:dd/MM/yyyy} \n");
             builder.Append($"Number of Employees attending: {employeesCount} \n");
             builder.Append($"Number of subjects of discussion: {subjectsCount} \n");
             builder.Append($"Meeting notes: {meeting.Notes} \n");
-            
+
             return builder.ToString();
         }
 
         public List<Meeting> listAllMeetings()
         {
             List<Meeting> meetings = Context.Meetings.Include(m => m.Employees).Include(m => m.Subjects).ToList();
-            if(meetings == null)
+            if (meetings == null)
             {
                 return null;
             }
@@ -70,6 +67,19 @@ namespace MeetingInfrastructure
             //    }
             //}
             //return builder.ToString();
+        }
+
+        public List<Employee> retreiveEmployees(List<int> ids)
+        {
+
+            List<Employee> Employees = Context.Employees.Where(x => ids.Contains(x.ID)).ToList();
+            return Employees;
+        }
+
+        public List<Subject> retreiveSubjects(List<int> ids)
+        {
+            List<Subject> subjects = Context.Subjects.Where(s => ids.Contains(s.ID)).ToList();
+            return subjects;
         }
     }
 }

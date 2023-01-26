@@ -70,7 +70,7 @@ namespace MeetingsAPI.Controllers
                 }
                 else
                 {
-                    result = Created("Positions", employee.ID);
+                    result = Created("Employees", employee.ID);
                 }
             }
             catch (Exception ex)

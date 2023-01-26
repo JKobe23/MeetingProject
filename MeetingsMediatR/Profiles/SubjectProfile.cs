@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MeetingCore;
+using MeetingsMediatR.Commands.Create;
+using MeetingsMediatR.Commands.Update;
 using MeetingsMediatR.Response_Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,10 @@ namespace MeetingsMediatR.Profiles
     {
         public SubjectProfile()
         {
-            CreateMap<Subject, SubjectResponse>();
+            CreateMap<Subject, SubjectResponse>().ReverseMap().ForMember(x => x.Meetings, y => y.Ignore());
+            CreateMap<Subject, CreateSubjectCommand>().ReverseMap().ForMember(x => x.Meetings, y => y.Ignore());
+            CreateMap<Subject, UpdateSubjectCommand>().ReverseMap().ForMember(x => x.Meetings, y => y.Ignore())
+                                                                    .ForMember(x => x.RefNumber, y => y.Ignore());
         }
     }
 }

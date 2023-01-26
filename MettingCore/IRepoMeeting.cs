@@ -11,5 +11,7 @@ namespace MeetingCore
         public Meeting getByRefNumber(string refId);
         public string listDetails(string refId);
         public List<Meeting> listAllMeetings();
+        public List<Employee> retreiveEmployees(List<int> employeeIDs);
+        public List<Subject> retreiveSubjects(List <int> subjectIDs);
     }
 }

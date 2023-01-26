@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,8 +15,9 @@ namespace MeetingCore
         public DateTime Date { get; set; }
         public string Location { get; set; }
         public string Notes { get; set; }
-        public IEnumerable<Employee> Employees { get; set; }
-        public IEnumerable<Subject> Subjects { get; set; }
+        public List<Employee> Employees { get; set; }
+
+        public List<Subject> Subjects { get; set; }
 
     }
 }
